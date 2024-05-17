@@ -9,6 +9,7 @@ pkgs.mkShell {
     rustc
     rustup
     clippy
+    bacon
     rust-analyzer
     pkg-config
   ];
