@@ -1,8 +1,8 @@
-use crate::data_structures::WeightedAdjacencyList;
+use crate::data_structures::{WeightedAdjacencyList,MinHeap};
 #[cfg(test)]
 mod tests {
     use crate::data_structures::WeightedAdjacencyList;
-    use super::{dijkstras_shortest_path,};
+    use super::dijkstras_shortest_path;
     #[test]
     fn dijkstras_shortest_path_primeagen_class_test(){
         //      (1) --- (4) ---- (5)
@@ -43,27 +43,26 @@ mod tests {
         assert_eq!(path.unwrap(), vec![0, 1, 4, 5]);
     }
 }
-pub fn dijkstras_shortest_path(
-    source: usize,
-    sink: usize,
-    graph: WeightedAdjacencyList<usize, usize>,
-) -> Option<Vec<usize>> {
-    let mut seen: Vec<bool> = vec![false; graph.len()];
+
+pub fn dijkstras_shortest_path( source: usize, sink: usize, graph: WeightedAdjacencyList<usize, usize>) -> Option<Vec<usize>> {
+    let mut visited: MinHeap<(f64, usize)> = MinHeap::new();
     let mut prev: Vec<usize> = vec![usize::MAX; graph.len()];
     let mut dists: Vec<f64> = vec![f64::INFINITY; graph.len()];
     dists[source] = 0.0;
+    visited.push((0.0, source));
 
-    while has_unvisited(&seen, &dists) {
-        let curr = get_lowest_unvisited(&seen, &dists);
-        seen[curr] = true;
+    while let Some((_, curr)) = visited.pop() {
+        if curr == sink {
+            break; // found shortest path to sink
+        }
+
         if let Some(adjs) = graph.get_neighbors(&curr) {
             for (&to, &weight) in adjs.iter() {
-                if !seen[to] {
-                    let new_dist = dists[curr] + weight as f64;
-                    if new_dist < dists[to] {
-                        dists[to] = new_dist;
-                        prev[to] = curr;
-                    }
+                let new_dist = dists[curr] + weight as f64;
+                if new_dist < dists[to] {
+                    dists[to] = new_dist;
+                    prev[to] = curr;
+                    visited.push((new_dist, to));
                 }
             }
         }
@@ -84,7 +83,6 @@ pub fn dijkstras_shortest_path(
     path.reverse();
     Some(path)
 }
-
 fn has_unvisited(seen: &[bool], dists: &[f64]) -> bool {
     seen.iter().enumerate().any(|(i, &s)| !s && dists[i] < f64::INFINITY)
 }
