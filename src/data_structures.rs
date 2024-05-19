@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 
-// Define a struct to represent the adjacency list with weighted edges
 pub struct WeightedAdjacencyList<T, W> {
     vertices: HashMap<T, HashMap<T, W>>,
 }
@@ -175,99 +174,98 @@ impl<T: PartialOrd> MinHeap<T> {
     }
 }
 pub struct Queue<T> {
-  queue: Vec<T>,
+    queue: Vec<T>,
 }
 
 impl<T> Queue<T> {
-  pub fn new() -> Self {
-    Queue { queue: Vec::new() }
-  }
-
-  pub fn length(&self) -> usize {
-    self.queue.len()
-  }
-
-  pub fn enqueue(&mut self, item: T) {
-    self.queue.push(item)
-  }
-
-  pub fn dequeue(&mut self) -> T {
-    self.queue.remove(0)
-  }
-  pub fn is_empty(&self) -> bool {
-    self.queue.is_empty()
-  }
-
-  pub fn peek(&self) -> Option<&T> {
-    self.queue.first()
-  }
+    pub fn new() -> Self {
+        Queue { queue: Vec::new() }
+    }
+    pub fn length(&self) -> usize {
+        self.queue.len()
+    }
+    pub fn enqueue(&mut self, item: T) {
+        self.queue.push(item)
+    }
+    pub fn dequeue(&mut self) -> T {
+        self.queue.remove(0)
+    }
+    pub fn is_empty(&self) -> bool {
+        self.queue.is_empty()
+    }
+    pub fn peek(&self) -> Option<&T> {
+        self.queue.first()
+    }
 }
 
 pub struct Stack<T> {
-  stack: Vec<T>,
+    stack: Vec<T>,
 }
 
 impl<T> Stack<T> {
-  pub fn new() -> Self {
-    Stack { stack: Vec::new() }
-  }
-
-  pub fn length(&self) -> usize {
-    self.stack.len()
-  }
-
-  pub fn pop(&mut self) -> Option<T> {
-    self.stack.pop()
-  }
-
-  pub fn push(&mut self, item: T) {
-    self.stack.push(item)
-  }
-
-  pub fn is_empty(&self) -> bool {
-    self.stack.is_empty()
-  }
-
-  pub fn peek(&self) -> Option<&T> {
-    self.stack.last()
-  }
+    pub fn new() -> Self {
+        Stack { stack: Vec::new() }
+    }
+    pub fn length(&self) -> usize {
+        self.stack.len()
+    }
+    pub fn pop(&mut self) -> Option<T> {
+        self.stack.pop()
+    }
+    pub fn push(&mut self, item: T) {
+        self.stack.push(item)
+    }
+    pub fn is_empty(&self) -> bool {
+        self.stack.is_empty()
+    }
+    pub fn peek(&self) -> Option<&T> {
+        self.stack.last()
+    }
 }
 
-use std::mem;
 
 struct Node<T> {
-  value: T,
-  next: Option<Box<Node<T>>>,
+    value: T,
+    prev: Option<Box<Node<T>>>,
+    next: Option<Box<Node<T>>>,
 }
 
 type Link<T> = Option<Box<Node<T>>>;
 
 pub struct List<T> {
-  head: Link<T>,
+    head: Link<T>,
+    tail: Link<T>
 }
 
 impl<T> List<T> {
-  pub fn new() -> Self {
-    List { head: None }
-  }
+    pub fn new() -> Self {
+        List { head: None, tail: None }
+    }
+    // Access node by index
+    pub fn get_node(&self, index: usize) -> Option<&Node<T>> {
+        let mut current_node = self.head.as_ref().map(|boxed_node| &**boxed_node);
+        let mut current_index = 0;
 
-  pub fn push(&mut self, item: T) {
-    let next_node = Box::new(Node {
-      value: item,
-      next: self.head.take(),
-    });
+        while let Some(node) = current_node {
+            if current_index == index {
+                return Some(node);
+            }
+            current_node = node.next.as_ref().map(|boxed_node| &**boxed_node);
+            current_index += 1;
+        }
 
-    self.head = Some(next_node)
-  }
-
-  pub fn pop(&mut self) -> Option<T> {
-    self.head.take().map(|node| {
-      self.head = node.next;
-      node.value
-    })
-  }
-
-  pub fn peek(&self) -> Option<&T> {
-    self.head.as_ref().map(|node| &node.value)
-  }
+        None
+    }
+    pub fn insert_before(insertion_node:Node<T>,node:Node<T>) -> Self {
+        //TODO: Implement Insert Before
+        List{head:None,tail:None}
+    }
+    pub fn insert_after(insertion_node:Node<T>,node:Node<T>) -> Self {
+        //TODO: Implement Insert After
+        List{head:None,tail:None}
+    }
+    pub fn delete(&self,index:usize) -> Self {
+        //TODO: Implement Delete
+        List{head:None,tail:None}
+    }
 }
