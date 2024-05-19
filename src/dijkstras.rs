@@ -1,8 +1,8 @@
-use std::collections::HashMap;
-
+use crate::data_structures::WeightedAdjacencyList;
 #[cfg(test)]
 mod tests {
-    use super::{dijkstras_shortest_path,WeightedAdjacencyList};
+    use crate::data_structures::WeightedAdjacencyList;
+    use super::{dijkstras_shortest_path,};
     #[test]
     fn dijkstras_shortest_path_primeagen_class_test(){
         //      (1) --- (4) ---- (5)
@@ -41,63 +41,6 @@ mod tests {
         graph.add_edge(6, 5, 1);
         let path = dijkstras_shortest_path(source,sink,graph.clone());
         assert_eq!(path.unwrap(), vec![0, 1, 4, 5]);
-    }
-}
-// Define a struct to represent the adjacency list with weighted edges
-pub struct WeightedAdjacencyList<T, W> {
-    vertices: HashMap<T, HashMap<T, W>>,
-}
-
-impl<T, W> Clone for WeightedAdjacencyList<T, W>
-where
-    T: Clone,
-    W: Clone,
-{
-    fn clone(&self) -> Self {
-        WeightedAdjacencyList {
-            vertices: self.vertices.clone(),
-        }
-    }
-}
-
-impl<T, W> WeightedAdjacencyList<T, W>
-where
-    T: std::hash::Hash + Eq + Clone,
-{
-    // Constructor to create a new weighted adjacency list
-    fn new() -> Self {
-        WeightedAdjacencyList {
-            vertices: HashMap::new(),
-        }
-    }
-
-    // Method to add a vertex to the adjacency list
-    fn add_vertex(&mut self, vertex: T) {
-        self.vertices.entry(vertex).or_insert(HashMap::new());
-    }
-
-    // Method to add an edge with weight between two vertices
-    fn add_edge(&mut self, from: T, to: T, weight: W) {
-        // Ensure both vertices exist in the adjacency list
-        self.add_vertex(from.clone());
-        self.add_vertex(to.clone());
-
-        // Add the edge from 'from' to 'to' with weight
-        self.vertices.get_mut(&from).unwrap().insert(to, weight);
-    }
-
-    // Method to get the weight of an edge between two vertices
-    fn get_weight(&self, from: &T, to: &T) -> Option<&W> {
-        self.vertices.get(from)?.get(to)
-    }
-
-    // Method to get the neighbors of a vertex
-    fn get_neighbors(&self, vertex: &T) -> Option<&HashMap<T, W>> {
-        self.vertices.get(vertex)
-    }
-    // Method to get the number of vertices in the adjacency list
-    fn len(&self) -> usize {
-        self.vertices.len()
     }
 }
 pub fn dijkstras_shortest_path(

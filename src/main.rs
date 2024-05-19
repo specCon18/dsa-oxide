@@ -3,6 +3,7 @@ mod binary_search;
 mod bubble_sort;
 mod quick_sort;
 mod dijkstras;
+mod data_structures;
 fn linear_search_demo(){
     println!("-------------------");
     println!("LINEAR SEARCH DEMO:");
