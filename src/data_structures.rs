@@ -174,3 +174,61 @@ impl<T: PartialOrd> MinHeap<T> {
         }
     }
 }
+pub struct Queue<T> {
+  queue: Vec<T>,
+}
+
+impl<T> Queue<T> {
+  pub fn new() -> Self {
+    Queue { queue: Vec::new() }
+  }
+
+  pub fn length(&self) -> usize {
+    self.queue.len()
+  }
+
+  pub fn enqueue(&mut self, item: T) {
+    self.queue.push(item)
+  }
+
+  pub fn dequeue(&mut self) -> T {
+    self.queue.remove(0)
+  }
+  pub fn is_empty(&self) -> bool {
+    self.queue.is_empty()
+  }
+
+  pub fn peek(&self) -> Option<&T> {
+    self.queue.first()
+  }
+}
+
+pub struct Stack<T> {
+  stack: Vec<T>,
+}
+
+impl<T> Stack<T> {
+  pub fn new() -> Self {
+    Stack { stack: Vec::new() }
+  }
+
+  pub fn length(&self) -> usize {
+    self.stack.len()
+  }
+
+  pub fn pop(&mut self) -> Option<T> {
+    self.stack.pop()
+  }
+
+  pub fn push(&mut self, item: T) {
+    self.stack.push(item)
+  }
+
+  pub fn is_empty(&self) -> bool {
+    self.stack.is_empty()
+  }
+
+  pub fn peek(&self) -> Option<&T> {
+    self.stack.last()
+  }
+}
