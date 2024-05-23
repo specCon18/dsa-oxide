@@ -1,14 +1,13 @@
 mod linear_search;
-mod linked_list;
 mod binary_search;
 mod bubble_sort;
 mod quick_sort;
 mod dijkstras;
 mod queue;
 mod stack;
-mod binary_tree;
 mod min_heap;
 mod weighted_adj_list;
+mod ring_buffer;
 mod data_structures;
 fn linear_search_demo(){
     println!("-------------------");
