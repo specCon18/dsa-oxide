@@ -1,8 +1,6 @@
-use crate::weighted_adj_list::{WeightedAdjacencyList};
-use crate::min_heap::MinHeap;
+use crate::data_structures::{weighted_adj_list::WeightedAdjacencyList,min_heap::MinHeap};
 #[cfg(test)]
 mod tests {
-    use crate::weighted_adj_list::WeightedAdjacencyList;
     use super::dijkstras_shortest_path;
     #[test]
     fn dijkstras_shortest_path_primeagen_class_test(){
