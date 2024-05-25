@@ -69,7 +69,6 @@ fn merge_sort_demo(){
     println!("-------------------");
     let arr = vec![9, 3, 7, 4, 69, 420, 42];
     println!("Array before merge sort: {:?}",arr);
-    
     println!("Array after merge sort: {:?}",merge_sort::merge_sort(arr));
 }
 fn main() {
