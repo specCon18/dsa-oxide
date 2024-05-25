@@ -1,8 +1,9 @@
+#[derive(Debug)]
 pub struct Stack<T> {
     stack: Vec<T>,
 }
 
-impl<T> Stack<T> {
+impl<T: Copy> Stack<T> {
     pub fn new() -> Self {
         Stack { stack: Vec::new() }
     }
@@ -20,5 +21,14 @@ impl<T> Stack<T> {
     }
     pub fn peek(&self) -> Option<&T> {
         self.stack.last()
+    }
+}
+
+impl<T: Copy> IntoIterator for Stack<T> {
+    type Item = T;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.stack.into_iter()
     }
 }

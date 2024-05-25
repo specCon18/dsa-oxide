@@ -71,6 +71,14 @@ fn merge_sort_demo(){
     println!("Array before merge sort: {:?}",arr);
     println!("Array after merge sort: {:?}",merge_sort::merge_sort(arr));
 }
+fn radix_sort_demo(){
+    println!("-------------------");
+    println!("RADIX SORT DEMO:");
+    println!("-------------------");
+    let arr = &[9, 3, 7, 4, 69, 420, 42];
+    println!("Array before radix sort: {:?}",arr);
+    println!("Array after radix sort: {:?}",radix_sort::radix_sort(arr));
+}
 fn main() {
     println!("");
     println!("|~~~~~~~~~~~~~~~|");
@@ -87,4 +95,5 @@ fn main() {
     quick_sort_demo();
     bubble_sort_demo();
     merge_sort_demo();
+    radix_sort_demo();
 }
