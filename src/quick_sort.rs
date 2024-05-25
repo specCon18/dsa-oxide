@@ -10,8 +10,8 @@ mod tests {
     }
 }
 
-fn partition(arr: &mut [usize], low: usize, high: usize) -> usize {
-    let pivot = arr[high];
+fn partition<T: Ord + Clone>(arr: &mut [T], low: usize, high: usize) -> usize {
+    let pivot = arr[high].clone();
     let mut idx = low;
     for i in low..high {
         if arr[i] <= pivot {
@@ -23,7 +23,7 @@ fn partition(arr: &mut [usize], low: usize, high: usize) -> usize {
     idx
 }
 
-fn qs(arr: &mut [usize], low: usize, high: usize) {
+fn qs<T: Ord + Clone>(arr: &mut [T], low: usize, high: usize) {
     if low < high {
         let pivot_idx = partition(arr, low, high);
         if pivot_idx > 0 {
@@ -33,7 +33,7 @@ fn qs(arr: &mut [usize], low: usize, high: usize) {
     }
 }
 
-pub fn quick_sort(arr: &mut [usize]) {
+pub fn quick_sort<T: Ord + Clone>(arr: &mut [T]) {
     let len = arr.len();
     if len > 0 {
         qs(arr, 0, len - 1);

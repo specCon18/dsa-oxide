@@ -43,14 +43,12 @@ mod tests {
         assert_eq!(arr, [42]);
     }
 }
-pub fn bubble_sort(arr: &mut [usize]) {
+pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
     let n = arr.len();
     for i in 0..n {
         for j in 0..n - 1 - i {
             if arr[j] > arr[j + 1] {
-                let tmp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = tmp;
+                arr.swap(j, j + 1);
             }
         }
     }
