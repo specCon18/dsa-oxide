@@ -50,9 +50,9 @@ fn bubble_sort_demo(){
     println!("BUBBLE SORT DEMO:");
     println!("-------------------");
     let mut arr = [9, 3, 7, 4, 69, 420, 42];
-    println!("Array before quick sort: {:?}",arr);
+    println!("Array before bubble sort: {:?}",arr);
     bubble_sort::bubble_sort(&mut arr);
-    println!("Array after quick sort: {:?}",arr);
+    println!("Array after bubble sort: {:?}",arr);
 }
 fn quick_sort_demo(){
     println!("-------------------");
@@ -62,6 +62,15 @@ fn quick_sort_demo(){
     println!("Array before quick sort: {:?}",arr);
     quick_sort::quick_sort(&mut arr);
     println!("Array after quick sort: {:?}",arr);
+}
+fn merge_sort_demo(){
+    println!("-------------------");
+    println!("MERGE SORT DEMO:");
+    println!("-------------------");
+    let arr = vec![9, 3, 7, 4, 69, 420, 42];
+    println!("Array before merge sort: {:?}",arr);
+    
+    println!("Array after merge sort: {:?}",merge_sort::merge_sort(arr));
 }
 fn main() {
     println!("");
@@ -78,4 +87,5 @@ fn main() {
     println!("");
     quick_sort_demo();
     bubble_sort_demo();
+    merge_sort_demo();
 }
