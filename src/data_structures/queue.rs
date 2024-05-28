@@ -1,24 +1,32 @@
+use std::collections::VecDeque;
+
+#[derive(Debug)]
 pub struct Queue<T> {
-    queue: Vec<T>,
+    queue: VecDeque<T>,
 }
 
 impl<T> Queue<T> {
     pub fn new() -> Self {
-        Queue { queue: Vec::new() }
+        Queue { queue: VecDeque::new() }
     }
+
     pub fn length(&self) -> usize {
         self.queue.len()
     }
+
     pub fn enqueue(&mut self, item: T) {
-        self.queue.push(item)
+        self.queue.push_back(item);
     }
-    pub fn dequeue(&mut self) -> T {
-        self.queue.remove(0)
+
+    pub fn dequeue(&mut self) -> Option<T> {
+        self.queue.pop_front()
     }
+
     pub fn is_empty(&self) -> bool {
         self.queue.is_empty()
     }
+
     pub fn peek(&self) -> Option<&T> {
-        self.queue.first()
+        self.queue.front()
     }
 }
