@@ -79,6 +79,15 @@ fn radix_sort_demo(){
     println!("Array before radix sort: {:?}",arr);
     println!("Array after radix sort: {:?}",radix_sort::radix_sort(arr));
 }
+fn heap_sort_demo(){
+    println!("-------------------");
+    println!("HEAP SORT DEMO:");
+    println!("-------------------");
+    let mut arr:Vec<u64> = vec![9, 3, 7, 4, 69, 420, 42];
+    println!("Array before heap sort: {:?}",arr);
+    heap_sort::heap_sort(&mut arr);
+    println!("Array after heap sort: {:?}",arr);
+}
 fn main() {
     println!("");
     println!("|~~~~~~~~~~~~~~~|");
@@ -96,4 +105,5 @@ fn main() {
     bubble_sort_demo();
     merge_sort_demo();
     radix_sort_demo();
+    heap_sort_demo();
 }
