@@ -88,6 +88,27 @@ fn heap_sort_demo(){
     heap_sort::heap_sort(&mut arr);
     println!("Array after heap sort: {:?}",arr);
 }
+fn weighted_adj_matrix_demo(){
+    println!("-------------------");
+    println!("WEIGHTED ADJACENCY MATRIX DEMO:");
+    println!("-------------------");
+    let mut matrix = data_structures::weighted_adj_matrix::WeightedAdjacencyMatrix::new(vec![
+        vec![1, 2, 3],
+        vec![4, 5, 6],
+        vec![7, 8, 9],
+    ]);
+    // Display the matrix before modification
+    println!("Matrix before modification:");
+    matrix.display_matrix();
+    // Demo of set_value function
+    match matrix.set_value(1, 1, 10) {
+        Ok(_) => println!("Successfully set value at row 1, column 1"),
+        Err(err) => println!("Error: {}", err),
+    }
+    // Display the matrix after modification
+    println!("Matrix after modification:");
+    matrix.display_matrix();
+}
 fn main() {
     println!("");
     println!("|~~~~~~~~~~~~~~~|");
@@ -106,4 +127,5 @@ fn main() {
     merge_sort_demo();
     radix_sort_demo();
     heap_sort_demo();
+    weighted_adj_matrix_demo();
 }
