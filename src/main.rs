@@ -6,6 +6,7 @@ mod radix_sort;
 mod bubble_sort;
 mod quick_sort;
 mod dijkstras;
+mod kadanes;
 mod data_structures;
 fn linear_search_demo(){
     println!("-------------------");
@@ -109,6 +110,12 @@ fn weighted_adj_matrix_demo(){
     println!("Matrix after modification:");
     matrix.display_matrix();
 }
+fn kadanes_demo(){
+    let a = [-3, -2, -3, 4, -1, -2, 1, 5, -3];
+    let (max_sum, max_subarray) = kadanes::kadanes(&a);
+    println!("Maximum contiguous sum is {}", max_sum);
+    println!("Subarray contributing to maximum sum: {:?}", max_subarray);
+}
 fn main() {
     println!("");
     println!("|~~~~~~~~~~~~~~~|");
@@ -128,4 +135,5 @@ fn main() {
     radix_sort_demo();
     heap_sort_demo();
     weighted_adj_matrix_demo();
+    kadanes_demo();
 }
